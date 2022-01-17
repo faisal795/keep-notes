@@ -6,15 +6,12 @@ import Header from "./components/Header";
 import Note from "./components/Note";
 
 function App() {
-  
   const [AddItems, setAddItems] = useState([]);
-
   const AddNote = (myNote) => {
     setAddItems((previousValue) => {
       return [...previousValue, myNote];
     });
   };
-
   const deleteNote = (id) => {
     setAddItems((oldData) => {
       return oldData.filter((curnt, indx) => {
@@ -23,10 +20,25 @@ function App() {
     });
   };
 
+  const [Mode, setMode] = useState("#fff");
+  const [ModeText, setModeText] = useState("DarkMode");
+  document.body.style.background = Mode;
+  const Togglefun = () => {
+    console.log('i m click');
+    if (Mode === "#fff" && ModeText === "DarkMode") {
+      setMode("#01033be8");
+      setModeText("LightMode");
+    } else {
+      setMode("#fff");
+      setModeText("DarkMode");
+     
+    }
+  };
+
   return (
     <>
-      <Header />
-      <CreateNote passNote={AddNote} />
+      <Header mode={Mode} changColorfun={Togglefun} textMode={ModeText} />
+      <CreateNote passNote={AddNote} textMode={ModeText} />
       <div className="outerDiv">
         {AddItems.map((value, index) => {
           return (
@@ -36,6 +48,7 @@ function App() {
               title={value.title}
               content={value.content}
               passDelete={deleteNote}
+              textMode={ModeText}
             />
           );
         })}

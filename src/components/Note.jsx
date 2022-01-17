@@ -9,11 +9,11 @@ const Note = (props) => {
 
   return (
     <>
-      <div className="note">
+      <div className="note" style={{color: `${(props.textMode === 'DarkMode')? '#000': '#fff'}`, background: `${(props.textMode === 'DarkMode')? '#fff': '#01033be8'}`}}>
         <h1>{props.title}</h1>
         <br />
         <p>{props.content}</p>
-        <Button className="btn" onClick={DeleteItem}>
+        <Button className="btn" onClick={DeleteItem} >
           <DeleteOutlineIcon className="deleteIcon" />
         </Button>
       </div>

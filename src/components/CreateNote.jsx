@@ -36,12 +36,17 @@ export default function CreateNote(props) {
     setExpend(false)
   }
 
+  const changBgColor = {
+    color: `${(props.textMode === 'DarkMode')? '#000': '#fff'}`,
+    background: `${(props.textMode === 'DarkMode')? '#fff': '#01033be8'}`
+  }
+
   return (
     <>
       <div className="main_note">
         <form>
           {Expend ? (
-            <input
+            <input style={changBgColor}
               type="text"
               name="title"
               value={Note.title}
@@ -50,8 +55,8 @@ export default function CreateNote(props) {
               autoComplete="0ff"
             ></input>
           ) : null}
-          <textarea
-            rows=""
+          <textarea style={changBgColor} 
+            rows="2"
             column=""
             name="content"
             value={Note.content}
@@ -61,7 +66,7 @@ export default function CreateNote(props) {
             onDoubleClick={expendClose}
           ></textarea>
           {Expend ? (
-            <Button onClick={addNoteEvent}>
+            <Button onClick={addNoteEvent} style={changBgColor}>
               <AddIcon className="plus_sign" />
             </Button>
           ) : null}
